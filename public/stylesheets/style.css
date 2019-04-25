@@ -1,0 +1,24 @@
+body {
+  background-color: #236317;
+}
+
+.tpl-login-content {
+  width: 300px;
+  margin: 15% auto 0;
+
+}
+
+.am-form-group{
+  color: whitesmoke;
+}
+
+
+
+.tpl-login-img{
+  width: 300px;
+text-align: center;
+}
+
+.warning-login{
+  text-align: center;
+}
