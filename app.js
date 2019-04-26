@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var usersRouter = require('./routes/users');
+var supermarketRouter = require('./routes/supermarket');
 
 var app = express();
 
@@ -19,16 +20,29 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 //登录拦截器
 app.all('/*', function (req, res, next) {
+    var nodeUser =req.cookies.nodeUser;
     var url = req.url.split('?')[0];
-    if (url == '/' ) {
-        res.render('index');
+    if(nodeUser&&nodeUser.name&&nodeUser.password){
+        if(url == '/'|| url == '/users/Login'){
+            res.render('index');
+        }else {
+            next();
+        }
     }else{
-        next();
+        if(url == '/' ){
+            res.render('login');
+        }else if(url == '/users/Login'){
+            next();
+        }
     }
+
+
+
 });
 
 
 app.use('/users', usersRouter);
+app.use('/', supermarketRouter);
 
 
 // catch 404 and forward to error handler

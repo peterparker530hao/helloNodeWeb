@@ -4804,7 +4804,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  var year;
 	  var $dayActive = this.$picker.find('.am-datepicker-days').find('.am-active');
 	  var $months = this.$picker.find('.am-datepicker-months');
-	  var $monthIndex = $months.find('.am-active').index();
+	  var $monthIndex = $months.find('.am-active').login();
 
 	  var $target = $(event.target).closest('span, td, th');
 	  if ($target.length === 1) {
@@ -4835,7 +4835,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 
 	        if ($target.is('.am-datepicker-month')) {
-	          month = $target.parent().find('span').index($target);
+	          month = $target.parent().find('span').login($target);
 
 	          if ($target.is('.am-active')) {
 	            this.viewDate.setMonth(month, $dayActive.text());
@@ -5664,7 +5664,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	          slider.slides.on(eventType, function(e) {
 	            e.preventDefault();
 	            var $slide = $(this),
-	              target = $slide.index();
+	              target = $slide.login();
 	            var posFromLeft = $slide.offset().left - $(slider).scrollLeft(); // Find position of slide relative to left of slider container
 	            if (posFromLeft <= 0 && $slide.hasClass(namespace + 'active-slide')) {
 	              slider.flexAnimate(slider.getTarget("prev"), true);
@@ -5688,7 +5688,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            that.addEventListener("MSGestureTap", function(e) {
 	              e.preventDefault();
 	              var $slide = $(this),
-	                target = $slide.index();
+	                target = $slide.login();
 	              if (!$(slider.vars.asNavFor).data('flexslider').animating && !$slide.hasClass('active')) {
 	                slider.direction = (slider.currentItem < target) ? "next" : "prev";
 	                slider.flexAnimate(target, slider.vars.pauseOnAction, false, true, true);
@@ -5743,7 +5743,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	          if (watchedEvent === "" || watchedEvent === event.type) {
 	            var $this = $(this),
-	              target = slider.controlNav.index($this);
+	              target = slider.controlNav.login($this);
 
 	            if (!$this.hasClass(namespace + 'active')) {
 	              slider.direction = (target > slider.currentSlide) ? "next" : "prev";
@@ -5768,7 +5768,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	          if (watchedEvent === "" || watchedEvent === event.type) {
 	            var $this = $(this),
-	              target = slider.controlNav.index($this);
+	              target = slider.controlNav.login($this);
 
 	            if (!$this.hasClass(namespace + 'active')) {
 	              (target > slider.currentSlide) ? slider.direction = "next" : slider.direction = "prev";
@@ -6586,7 +6586,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    slider.vars.added(slider);
 	  };
 	  slider.removeSlide = function(obj) {
-	    var pos = (isNaN(obj)) ? slider.slides.index($(obj)) : obj;
+	    var pos = (isNaN(obj)) ? slider.slides.login($(obj)) : obj;
 
 	    // update count
 	    slider.count -= 1;
@@ -10139,7 +10139,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	  this.$element.on('click.pureview.amui', options.target, function(e) {
 	    e.preventDefault();
-	    var clicked = _this.$images.index(this);
+	    var clicked = _this.$images.login(this);
 
 	    // Invoke WeChat ImagePreview in WeChat
 	    // TODO: detect WeChat before init
@@ -10167,7 +10167,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  // Nav Contorl
 	  $pureview.find(options.selector.nav).on('click.nav.pureview.amui', 'li',
 	    function() {
-	      var index = _this.$navItems.index($(this));
+	      var index = _this.$navItems.login($(this));
 	      _this.activate(_this.$slides.eq(index));
 	    });
 
@@ -10306,7 +10306,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	PureView.prototype.activate = function($slide) {
 	  var options = this.options;
 	  var $slides = this.$slides;
-	  var activeIndex = $slides.index($slide);
+	  var activeIndex = $slides.login($slide);
 	  var title = $slide.data('title') || '';
 	  var active = options.className.active;
 
@@ -10355,7 +10355,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	  var $slides = this.$slides;
 	  var $active = $slides.filter('.am-active');
-	  var activeIndex = $slides.index($active);
+	  var activeIndex = $slides.login($active);
 	  var rightSpring = 'am-animation-right-spring';
 
 	  if (activeIndex + 1 >= $slides.length) { // last one
@@ -10374,7 +10374,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	  var $slides = this.$slides;
 	  var $active = $slides.filter('.am-active');
-	  var activeIndex = this.$slides.index(($active));
+	  var activeIndex = this.$slides.login(($active));
 	  var leftSpring = 'am-animation-left-spring';
 
 	  if (activeIndex === 0) { // first one
@@ -14387,7 +14387,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  if ($active.length !== 1) {
 	    this.open(0);
 	  } else {
-	    this.activeIndex = this.$navs.index($active.children('a'));
+	    this.activeIndex = this.$navs.login($active.children('a'));
 	  }
 	};
 
@@ -14435,7 +14435,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 */
 	Tabs.prototype.open = function($nav) {
 	  var activeClass = this.options.activeClass;
-	  var activeIndex = typeof $nav === 'number' ? $nav : this.$navs.index($($nav));
+	  var activeIndex = typeof $nav === 'number' ? $nav : this.$navs.login($($nav));
 
 	  $nav = typeof $nav === 'number' ? this.$navs.eq(activeIndex) : $($nav);
 
@@ -16352,11 +16352,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	      // 第一次调用，没有prevIndex
 	      if (prevIndex === undefined) {
-	        prevIndex = $(this).index() ? 0 : 1;
+	        prevIndex = $(this).login() ? 0 : 1;
 	      }
 
 	      // 判断方向
-	      var dir = $(this).index() > prevIndex;
+	      var dir = $(this).login() > prevIndex;
 	      var target = $(this)[dir ? 'next' : 'prev']();
 
 	      // 点击的按钮，显示一半
@@ -16376,7 +16376,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        listOffset.left - offset.left, 0, 400);
 	      }
 
-	      prevIndex = $(this).index();
+	      prevIndex = $(this).login();
 
 	    });
 
